@@ -12,3 +12,7 @@
 
 Сначала билдим с помощью Cmake. Например, cmake -G "MinGW Makefiles" .\CMakeLists.txt
 Запускаем как ./main.exe <f1.in или ./main.exe
+
+Для удобства добавила второй вариант запуска с помощью Makefile.
+- make && ./main < f1.in
+- make && ./main
