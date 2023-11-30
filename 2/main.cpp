@@ -2,8 +2,11 @@
 #include<chrono>
 #include<vector>
 #include<thread>
+#include<mutex>
 using namespace std;
 using namespace std::chrono;
+
+mutex mtx;
 
 void matrix_multiple(std::vector<std::pair <double, double> >& a, std::vector<std::pair <double, double> >& b, 
                     std::vector<std::pair <double, double> >& ans, size_t start, size_t end, int m, int n, int k){
@@ -11,10 +14,12 @@ void matrix_multiple(std::vector<std::pair <double, double> >& a, std::vector<st
         for (size_t j = 0; j < n; j++){
             double d_ans = 0.0; double m_ans = 0.0;
             for (size_t l = 0; l < k; l++){
+                mtx.lock();
                 std::pair pair1 = a[m*i+l];
                 std::pair pair2 = b[n*l+j];
                 d_ans += pair1.first * pair2.first - pair1.second * pair2.second;
                 m_ans += pair1.first * pair2.second + pair1.second * pair2.first;
+                mtx.unlock();
             }
             ans.push_back(make_pair(d_ans,m_ans)); 
         }
