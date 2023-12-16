@@ -8,6 +8,8 @@
 
 Правило проверки: строка должна оканчиваться на «.» или «;»
 
+![image](https://github.com/TPShipilova/OS3sem/blob/main/3/4_16.png)
+
 ## Запуск
 
 Сначала билдим с помощью Cmake. Например, cmake -G "MinGW Makefiles" .\CMakeLists.txt
