@@ -33,7 +33,7 @@ int main(){
                     "\t1 - find greatest common fraction,\n" << 
                     "\t2 - sort an array,\n" << 
                     "\t3 - exit." << std::endl;
-    std::cout << "===========================================" << std::endl;
+    std::cout << std::endl;
 
     while (1){
         if (!(std::cin >> cmd)){
