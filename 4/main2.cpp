@@ -93,10 +93,10 @@ int main(){
             std::cout << std::endl;
             break;
         case EXIT:
+            dlclose(gcf_lib);
+            dlclose(sort_lib);
             exit(0);
         }
     }
-    dlclose(gcf_lib);
-    dlclose(sort_lib);
     return 0;
 }
