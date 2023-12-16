@@ -57,7 +57,7 @@ int main(){
                     "\t1 - calculate sin integral,\n" << 
                     "\t2 - calculate cos derivative,\n" << 
                     "\t3 - exit." << std::endl;
-    std::cout << "===========================================" << std::endl;
+    std::cout << std::endl;
 
     while (1){
         if (!(std::cin >> cmd)){
