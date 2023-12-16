@@ -22,15 +22,15 @@ enum Algo {
     SECOND = 2
 }; 
 
-std::string si_lib_path = "./libGCF.so";
-std::string cd_lib_path = "./libSort.so";
+std::string gcf_lib_path = "./libGCF.so";
+std::string sort_lib_path = "./libSort.so";
 
 int main(){
     
-    void* si_lib = dlopen(si_lib_path.c_str(), RTLD_LAZY);
-    void* cd_lib = dlopen(cd_lib_path.c_str(), RTLD_LAZY);
+    void* gcf_lib = dlopen(gcf_lib_path.c_str(), RTLD_LAZY);
+    void* sort_lib = dlopen(sort_lib_path.c_str(), RTLD_LAZY);
 
-    if (!cd_lib || !si_lib) {
+    if (!sort_lib || !gcf_lib) {
         std::cout << "Cannot load library: " << dlerror() << '\n';
         return 1;
     }
@@ -38,19 +38,19 @@ int main(){
     typedef int (*GCFType)(int, int);
     typedef int* (*SortType)(int *, int);
     
-    if (!dlsym(si_lib, "GCF1") || !dlsym(si_lib, "GCF2") || 
-        !dlsym(cd_lib, "bubble_sort") || !dlsym(cd_lib, "hoar_sort")) {
+    if (!dlsym(gcf_lib, "GCF1") || !dlsym(gcf_lib, "GCF2") || 
+        !dlsym(sort_lib, "bubble_sort") || !dlsym(sort_lib, "hoar_sort")) {
         std::cout << "Cannot load function: " << dlerror() << '\n';
-        dlclose(si_lib);
-        dlclose(cd_lib);
+        dlclose(gcf_lib);
+        dlclose(sort_lib);
         return 1;
     }
 
     Command cmd = EXIT;
     Algo cur_algo = FIRST;
 
-    GCFType GCF_alg = (GCFType)dlsym(si_lib, "GCF1");
-    SortType Sort_alg = (SortType)dlsym(cd_lib, "bubble_sort");
+    GCFType GCF_alg = (GCFType)dlsym(gcf_lib, "GCF1");
+    SortType Sort_alg = (SortType)dlsym(sort_lib, "bubble_sort");
 
     std::cout<< "Choose command: \n" << 
                     "\t0 - switch algo in lib,\n" <<  
@@ -68,8 +68,8 @@ int main(){
         {
         case CHANGE_FUNC:
             cur_algo = (cur_algo == FIRST) ? SECOND : FIRST;
-            GCF_alg = (cur_algo == FIRST) ? (GCFType)dlsym(si_lib, "GCF1") : (GCFType)dlsym(si_lib, "GCF2");
-            Sort_alg = (cur_algo == FIRST) ? (SortType)dlsym(cd_lib, "bubble_sort") : (SortType)dlsym(cd_lib, "hoar_sort");
+            GCF_alg = (cur_algo == FIRST) ? (GCFType)dlsym(gcf_lib, "GCF1") : (GCFType)dlsym(gcf_lib, "GCF2");
+            Sort_alg = (cur_algo == FIRST) ? (SortType)dlsym(sort_lib, "bubble_sort") : (SortType)dlsym(sort_lib, "hoar_sort");
             std::cout << "Algo switched to " << ((cur_algo == FIRST) ? "first" : "second") << std::endl;
             break;
         case GCF:
@@ -96,7 +96,7 @@ int main(){
             exit(0);
         }
     }
-    dlclose(si_lib);
-    dlclose(cd_lib);
+    dlclose(gcf_lib);
+    dlclose(sort_lib);
     return 0;
 }
