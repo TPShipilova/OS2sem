@@ -53,9 +53,9 @@ int main(){
     SortType Sort_alg = (SortType)dlsym(sort_lib, "bubble_sort");
 
     std::cout<< "Choose command: \n" << 
-                    "\t0 - switch algo in lib,\n" <<  
-                    "\t1 - calculate sin integral,\n" << 
-                    "\t2 - calculate cos derivative,\n" << 
+                    "\t0 - switch func in lib,\n" <<  
+                    "\t1 - find greatest common fraction,\n" << 
+                    "\t2 - sort an array,\n" << 
                     "\t3 - exit." << std::endl;
     std::cout << std::endl;
 
