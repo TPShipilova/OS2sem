@@ -1,0 +1,19 @@
+#ifndef LAB6_MESSAGETYPES_H
+#define LAB6_MESSAGETYPES_H
+
+
+enum class MessageTypes : int {
+    CREATE_REQUEST,
+    CREATE_RESULT,
+    CREATE_FAIL,
+    EXEC_REQUEST,
+    EXEC_RESULT,
+    EXEC_FAIL,
+    RELATE_RESULT,
+    RELATE_REQUEST,
+    QUIT,
+    EMPTY,
+    TEST,
+};
+
+#endif //LAB6_MESSAGETYPES_H
