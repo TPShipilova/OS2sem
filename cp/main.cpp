@@ -1,6 +1,7 @@
 #include "utils.hpp"
 #include "GameManager.hpp"
-
+#include <string>
+#include <fstream>
 using namespace std;
 
 int main(void) {
@@ -29,7 +30,14 @@ int main(void) {
             cout << "> ";
             cin >> cmd;
             if(cmd == "leaderboard") {
-
+                string stat = "statistics.txt";
+                ifstream fin(stat);
+                string line;
+                while(getline(fin, line)){
+                    fin >> line;
+                    cout << line << endl;
+                }
+                fin.close();
             }
             else print_help();
         }
