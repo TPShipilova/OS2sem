@@ -2,6 +2,7 @@
 #include <sys/wait.h>
 #include "utils.hpp"
 #include "GameManager.hpp"
+#include <fstream>
 
 using namespace std;
 
@@ -17,7 +18,14 @@ int main(int argc, char** argv) {
         cout << "> ";
         cin >> cmd;
         if(cmd == "leaderboard") {
-
+            string stat = "statistics.txt";
+            ifstream fin(stat);
+            string line;
+            while(getline(fin, line)){
+                fin >> line;
+                cout << line << endl;
+                }
+            fin.close();
         }
         else print_help();
     }
