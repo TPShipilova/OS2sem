@@ -61,8 +61,8 @@ int main(int argc, char** argv) {
             char* buf = new char[2];
             read(pipe[READ], buf, 2);
             std::string smsg {buf};
-            size_t x = std::stoul(smsg.substr(0, 1));
-            size_t y = std::stoul(smsg.substr(1, 1));
+            size_t x = std::stoul(smsg.substr(0, 1),nullptr,10);
+            size_t y = std::stoul(smsg.substr(2, 1),nullptr,10);
             shot_t res = manager.recieve_attack(x, y);
 
             if(res == SHOT_HIT) {
